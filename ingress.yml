@@ -1,0 +1,38 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: etas-ingress
+spec:
+  rules:
+  - host: etasweb.com
+    http:
+      paths:
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: etas-auth-service
+            port:
+              number: 3000
+      - path: /category
+        pathType: Prefix
+        backend:
+          service:
+            name: etas-category-service
+            port:
+              number: 3000
+      - path: /expense
+        pathType: Prefix
+        backend:
+          service:
+            name: etas-expense-service
+            port:
+              number: 3000
+      - path: /user
+        pathType: Prefix
+        backend:
+          service:
+            name: etas-user-service
+            port:
+              number: 3000
